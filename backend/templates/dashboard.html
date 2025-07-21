@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - TaleemHub</title>
+    <link rel="stylesheet" href="/Static/CSS/dashboard.css">
+</head>
+<body>
+    <!-- Profile Section -->
+    <header class="dashboard-header">
+        <div class="profile">
+            <h2>👋 Welcome, {{ session['username'] }}</h2>
+            <p>Member since: July 2025</p>
+        </div>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Log Out</a>
+    </header>
+
+    <!-- Questions and Responses -->
+    <main class="qa-container">
+        <h3>Your Questions & Responses</h3>
+        {% if qa_list %}
+            <div class="qa-grid">
+                {% for q, a in qa_list %}
+                <div class="qa-card">
+                    <h4>❓ {{ q }}</h4>
+                    <p>💬 {{ a }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>You haven’t asked any questions yet.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
